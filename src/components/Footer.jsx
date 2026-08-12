@@ -1,12 +1,13 @@
 import React from 'react';
 import { useApp } from '../context/AppContext';
+import { CONTACT_PHONE, WHATSAPP_LINK } from '../config/siteConfig';
 import { Youtube, Facebook, Phone, MessageCircle } from 'lucide-react';
 
 const OFFICIAL_SOCIALS = {
   tiktok: 'https://www.tiktok.com/es-419/',
   youtube: 'https://www.youtube.com/@4kmproducciones',
   facebook: 'https://www.facebook.com/profile.php?id=100083404565767&locale=es_LA',
-  whatsapp: 'https://wa.me/51994253131',
+  whatsapp: WHATSAPP_LINK,
 };
 
 const IconBtn = ({ href, title, children, hoverColor = '#C8A44D' }) => (
@@ -63,10 +64,10 @@ export const Footer = () => {
           <div className="space-y-5 lg:col-span-1">
             <div className="flex items-center gap-3">
               <div
-                className="w-10 h-10 rounded-full overflow-hidden flex-shrink-0"
-                style={{ border: '1px solid rgba(200,164,77,0.35)' }}
+                className="w-10 h-10 flex-shrink-0"
+                style={{ border: '1px solid rgba(200,164,77,0.35)', borderRadius: '10px', overflow: 'hidden' }}
               >
-                <img src="/img/logo.jpg" alt="4KM Producciones" className="w-full h-full object-cover" />
+                <img src="./img/logo.jpg" alt="4KM Producciones" className="w-full h-full object-contain bg-[#0A0A0A]" />
               </div>
               <div>
                 <div className="font-cinzel font-bold tracking-widest text-sm" style={{ color: '#F7F7F7' }}>4KM</div>
@@ -80,7 +81,7 @@ export const Footer = () => {
 
             {/* Phone */}
             <a
-              href="https://wa.me/51994253131"
+              href={WHATSAPP_LINK}
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-2 transition-colors duration-200"
@@ -89,7 +90,7 @@ export const Footer = () => {
               onMouseLeave={e => e.currentTarget.style.color = '#C8A44D'}
             >
               <Phone className="w-3.5 h-3.5" />
-              <span>+51 994 253 131</span>
+              <span>{CONTACT_PHONE}</span>
             </a>
 
             {/* Socials */}
@@ -161,7 +162,7 @@ export const Footer = () => {
                   onMouseEnter={e => e.currentTarget.style.color = '#D4AF37'}
                   onMouseLeave={e => e.currentTarget.style.color = '#C8A44D'}
                 >
-                  WhatsApp: 994 253 131
+                  WhatsApp: {CONTACT_PHONE}
                 </a>
               </li>
             </ul>
@@ -198,7 +199,7 @@ export const Footer = () => {
           style={{ borderTop: '1px solid #1E1E1E' }}
         >
           <p style={{ color: '#444444', fontSize: '0.75rem' }}>
-            © 2026 4KM Producciones. Todos los derechos reservados. WhatsApp: +51 994 253 131
+            © 2026 4KM Producciones. Todos los derechos reservados. WhatsApp: {CONTACT_PHONE}
           </p>
           <p style={{ color: '#333333', fontSize: '0.75rem' }}>
             Diseñado con estética cinematográfica · 4K Cinema Standard

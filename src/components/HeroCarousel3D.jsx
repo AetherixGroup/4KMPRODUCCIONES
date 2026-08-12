@@ -38,7 +38,7 @@ export const HeroCarousel3D = () => {
             transform: animating ? 'scale(1.02)' : 'scale(1)',
             transition: 'opacity 600ms cubic-bezier(0.4,0,0.2,1), transform 800ms cubic-bezier(0.4,0,0.2,1)',
           }}
-          onError={e => { e.target.src = '/img/hero.jpg'; }}
+          onError={e => { e.target.src = './img/hero.jpg'; }}
         />
         {/* Cinematic vignette */}
         <div className="absolute inset-0" style={{
@@ -72,9 +72,9 @@ export const HeroCarousel3D = () => {
             </div>
 
             {/* Title */}
-            <h1 className="type-display" style={{ color: '#F7F7F7', textShadow: '0 2px 20px rgba(0,0,0,0.5)' }}>
+            <h1 className="type-display" style={{ color: '#F7F7F7', textShadow: 'none', letterSpacing: '-0.03em' }}>
               {slide.title.split(' ').slice(0, -2).join(' ')}{' '}
-              <span style={{ color: '#C8A44D' }}>
+              <span style={{ color: '#C8A44D', textShadow: 'none' }}>
                 {slide.title.split(' ').slice(-2).join(' ')}
               </span>
             </h1>

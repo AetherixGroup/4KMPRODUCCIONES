@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
+import { CONTACT_PHONE, WHATSAPP_LINK, sendToN8N } from '../config/siteConfig';
 import { UPSELL_PRODUCTS } from '../data/catalog';
 import { X, Trash2, Plus, Minus, Tag, CreditCard, Send, CheckCircle2, Sparkles, ShieldCheck, ShoppingBag } from 'lucide-react';
 
@@ -67,7 +68,20 @@ export const SmartCartDrawer = () => {
       `*Items:* ${order.items.join(', ')}%0A` +
       `*Total con IGV:* S/ ${order.total.toFixed(2)}%0A` +
       `*Método:* ${order.paymentMethod}`;
-    window.open(`https://wa.me/51994253131?text=${text}`, '_blank');
+
+    sendToN8N({
+      type: 'order',
+      orderId: order.id,
+      client: order.client,
+      phone: order.phone,
+      email: order.email,
+      items: order.items,
+      total: order.total,
+      paymentMethod: order.paymentMethod,
+      notes: order.notes
+    });
+
+    window.open(`${WHATSAPP_LINK}?text=${text}`, '_blank');
   };
 
   return (
@@ -109,7 +123,7 @@ export const SmartCartDrawer = () => {
                 className="w-full btn-gold py-3 text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2"
               >
                 <Send className="w-4 h-4" />
-                <span>CONFIRMAR POR WHATSAPP (994253131)</span>
+                <span>CONFIRMAR POR WHATSAPP ({CONTACT_PHONE})</span>
               </button>
 
               <button 
@@ -237,7 +251,7 @@ export const SmartCartDrawer = () => {
                   />
                   <input 
                     type="tel"
-                    placeholder="Teléfono / WhatsApp (Ej: 994253131) *"
+                    placeholder="Teléfono / WhatsApp (Ej: 924130007) *"
                     value={clientData.phone}
                     onChange={(e) => setClientData({ ...clientData, phone: e.target.value })}
                     className="glass-input w-full text-xs"

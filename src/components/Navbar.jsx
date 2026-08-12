@@ -6,7 +6,7 @@ const NAV_LINKS = [
   { label: 'Inicio',     action: () => window.scrollTo({ top: 0, behavior: 'smooth' }) },
   { label: 'Portafolio', id: 'portafolio' },
   { label: 'Servicios',  id: 'servicios' },
-  { label: 'Drone 4K',   id: 'drone' },
+  { label: 'Colecciones', action: () => { window.location.href = '?portafolio=bodas'; } },
 ];
 
 export const Navbar = () => {
@@ -49,13 +49,16 @@ export const Navbar = () => {
               aria-label="Inicio 4KM Producciones"
             >
               <div
-                className="relative w-10 h-10 rounded-full overflow-hidden flex-shrink-0 transition-all duration-300 group-hover:scale-105"
+                className="relative w-9 h-9 sm:w-10 sm:h-10 flex-shrink-0 transition-all duration-300 group-hover:scale-105"
                 style={{
-                  border: '1px solid rgba(200,164,77,0.35)',
-                  boxShadow: '0 0 16px rgba(200,164,77,0.12)',
+                  overflow: 'visible',
+                  background: 'transparent',
+                  border: 'none',
+                  borderRadius: 0,
+                  boxShadow: 'none',
                 }}
               >
-                <img src="/img/logo.jpg" alt="4KM" className="w-full h-full object-cover" />
+                <img src="./img/logo.jpg" alt="4KM Producciones" className="w-full h-full object-contain block" style={{ display: 'block', maxWidth: '100%', maxHeight: '100%' }} />
               </div>
               <div className="hidden sm:block">
                 <div
@@ -112,7 +115,7 @@ export const Navbar = () => {
                 title="4KM Rewards — Canjea puntos"
               >
                 <Award className="w-3.5 h-3.5" style={{ color: '#C8A44D' }} />
-                <span className="text-[0.7rem] font-bold" style={{ color: '#C8A44D' }}>{rewardsPoints} pts</span>
+                <span className="text-[0.7rem] font-bold" style={{ color: '#C8A44D' }}>{rewardsPoints}</span>
               </button>
 
               {/* Cart */}

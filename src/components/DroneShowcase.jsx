@@ -71,11 +71,11 @@ export const DroneShowcase = () => {
               }}
             >
               <img
-                src="/img/drone.jpg"
+                src="./img/drone.jpg"
                 alt="Drone 4K Cinema 4KM Producciones"
                 className="w-full object-cover transition-transform duration-700 group-hover:scale-105"
                 style={{ height: '360px' }}
-                onError={e => { e.target.src = '/img/hero.jpg'; }}
+                onError={e => { e.target.src = './img/hero.jpg'; }}
               />
               <div className="absolute inset-0" style={{
                 background: 'linear-gradient(180deg, transparent 50%, rgba(10,10,10,0.9) 100%)',

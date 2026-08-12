@@ -1,7 +1,31 @@
 import React, { useState } from 'react';
 import { CATEGORIES, AUDIOVISUAL_EVENTS, MARKETING_PACKAGES } from '../data/catalog';
 import { useApp } from '../context/AppContext';
-import { Camera, Video, CheckCircle2, ShoppingBag, Calendar, Calculator, Clock, Users, Disc, Check, Bot, Cpu, Sparkles } from 'lucide-react';
+import { Camera, Video, CheckCircle2, ShoppingBag, Calendar, Calculator, Clock, Users, Disc, Check, Bot, Cpu, ExternalLink, Film, Play, X } from 'lucide-react';
+
+const LOCAL_SHOWREEL_VIDEOS = [
+  { title: 'Inmobiliaria', src: './img/YDRAY-ALEYDA-INMOBILIARIA.mp4', cover: './img/Screenshot_1.png' },
+  { title: 'Comercial 15 Anos', src: './img/YDRAY-COMERCIAL-15-ANOS.mp4', cover: './img/Screenshot_2.png' },
+  { title: 'Comercial Donattos', src: './img/YDRAY-COMERCIAL-DONATTOS-2.mp4', cover: './img/Screenshot_3.png' },
+  { title: 'Publicidad Manya', src: './img/YDRAY-MANYA-PUBLICIDAD.mp4', cover: './img/Screenshot_4.png' },
+  { title: 'Publicidad Power Brasa', src: './img/YDRAY-power-brasa-publicidad.mp4', cover: './img/Screenshot_5.png' },
+  { title: 'Proyecto Ortiz', src: './img/YDRAY-PROYECTO-ORTIZ.mp4', cover: './img/Screenshot_6.png' },
+  { title: 'Produccion Drone', src: './img/YDRAY-PUBLICIDAD-DRONE-OFICIAL.mp4', cover: './img/Screenshot_7.png' },
+  { title: 'Reel Carrera de Motos', src: './img/YDRAY-REEL-carrera-de-motos.mp4', cover: './img/Screenshot_8.png' },
+  { title: 'Torneo Parrillero', src: './img/YDRAY-torneo-parrillero-nmr-2-OFICIAL-.mp4', cover: './img/Screenshot_9.png' },
+];
+
+const TIKTOK_VIDEOS = [
+  '7557432358794792200', '7556768882837474578', '7555224096309579029',
+  '7548975867892878610', '7527554039676931334', '7518257567231970565',
+  '7514528204477058360', '7470758061188123909', '7419502976491851013',
+  '7413898058867543302', '7397621056841796870', '7397124804161146118',
+  '7387611790709918981',
+].map((id, index) => ({
+  id,
+  title: `TikTok 4KM ${String(index + 1).padStart(2, '0')}`,
+  url: `https://www.tiktok.com/@4kmproducciones/video/${id}`,
+}));
 
 /* ──────────────────────────────────────────
    Package Card
@@ -29,6 +53,18 @@ const PackageCard = ({ pkg, isVip = false, onCart, onBook, onQuote }) => (
         : '0 1px 3px rgba(0,0,0,0.5), 0 16px 32px -8px rgba(0,0,0,0.6)';
     }}
   >
+    {/* Image Thumbnail */}
+    {pkg.image && (
+      <div className="relative w-full aspect-video overflow-hidden bg-black/30">
+        <img
+          src={pkg.image}
+          alt={pkg.name}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          onError={e => { e.target.style.display = 'none'; }}
+        />
+      </div>
+    )}
+
     {/* VIP banner */}
     {isVip && (
       <div className="type-label px-4 py-2 text-center text-[0.6rem]"
@@ -101,7 +137,7 @@ const PackageCard = ({ pkg, isVip = false, onCart, onBook, onQuote }) => (
 ────────────────────────────────────────── */
 const MarketingCard = ({ mkt, onCart, onBook }) => (
   <article
-    className="flex flex-col justify-between rounded-2xl overflow-hidden transition-all duration-300"
+    className="flex flex-col justify-between rounded-2xl overflow-hidden transition-all duration-300 group"
     style={{
       background: '#141418',
       border: mkt.recommended ? '1px solid rgba(200,164,77,0.40)' : '1px solid #2A2A2A',
@@ -112,6 +148,18 @@ const MarketingCard = ({ mkt, onCart, onBook }) => (
     onMouseEnter={e => { e.currentTarget.style.borderColor = 'rgba(200,164,77,0.40)'; e.currentTarget.style.transform = 'translateY(-3px)'; }}
     onMouseLeave={e => { e.currentTarget.style.borderColor = mkt.recommended ? 'rgba(200,164,77,0.40)' : '#2A2A2A'; e.currentTarget.style.transform = 'none'; }}
   >
+    {/* Image Thumbnail */}
+    {mkt.image && (
+      <div className="relative w-full aspect-video overflow-hidden bg-black/30">
+        <img
+          src={mkt.image}
+          alt={mkt.name}
+          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+          onError={e => { e.target.style.display = 'none'; }}
+        />
+      </div>
+    )}
+
     {mkt.recommended && (
       <div className="type-label px-4 py-2 text-center text-[0.6rem]"
         style={{ background: 'rgba(200,164,77,0.10)', color: '#C8A44D', borderBottom: '1px solid rgba(200,164,77,0.20)' }}>
@@ -170,6 +218,14 @@ const MarketingCard = ({ mkt, onCart, onBook }) => (
 export const ServicesCatalog = () => {
   const { addToCart, openBookingWithItem, setQuoteOpen } = useApp();
   const [activeCategory, setActiveCategory] = useState('todos');
+  const [selectedVideo, setSelectedVideo] = useState(null);
+  const [touchStart, setTouchStart] = useState(null);
+
+  const closeVideo = () => setSelectedVideo(null);
+  const closeOnSwipe = (event) => {
+    if (touchStart !== null && event.changedTouches[0].clientY - touchStart > 90) closeVideo();
+    setTouchStart(null);
+  };
 
   return (
     <section id="servicios" className="section-pad" style={{ background: '#0A0A0A' }}>
@@ -234,6 +290,62 @@ export const ServicesCatalog = () => {
                 </div>
               </div>
             ))}
+          </div>
+        )}
+
+        {(activeCategory === 'todos' || activeCategory === 'audiovisual') && (
+          <div className="space-y-8 pt-8" style={{ borderTop: '1px solid #1E1E1E' }}>
+            <div className="flex items-start gap-4">
+              <div className="w-1 self-stretch" style={{ background: '#C8A44D', minHeight: '48px' }} />
+              <div>
+                <p className="type-label mb-2" style={{ color: '#C8A44D' }}>MUESTRA DE TRABAJOS</p>
+                <h3 className="font-cinzel text-2xl font-bold" style={{ color: '#F7F7F7' }}>Videos reales de 4KM</h3>
+                <p className="text-sm mt-1" style={{ color: '#A0A0A8' }}>Reproduce una muestra local o abre nuestra coleccion completa en TikTok.</p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 md:gap-6">
+              {LOCAL_SHOWREEL_VIDEOS.map((video) => (
+                <article key={video.src} className="overflow-hidden" style={{ background: '#141418', border: '1px solid #2A2A2A', borderRadius: '8px' }}>
+                  <button onClick={() => setSelectedVideo({ ...video, type: 'local' })} className="relative block w-full aspect-video overflow-hidden bg-black group" aria-label={`Reproducir ${video.title}`}>
+                    <img src={video.cover} alt="" className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105" onError={(event) => { event.currentTarget.src = './img/mockup.jpg'; }} />
+                    <span className="absolute inset-0 grid place-items-center bg-black/35 group-hover:bg-black/20"><span className="grid place-items-center w-12 h-12 rounded-full text-black" style={{ background: '#C8A44D' }}><Play className="w-5 h-5 fill-current ml-0.5" /></span></span>
+                  </button>
+                  <div className="flex items-center gap-2 p-4">
+                    <Film className="w-4 h-4 shrink-0" style={{ color: '#C8A44D' }} />
+                    <h4 className="font-cinzel text-sm font-bold" style={{ color: '#F7F7F7' }}>{video.title}</h4>
+                  </div>
+                </article>
+              ))}
+            </div>
+
+            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-3">
+              {TIKTOK_VIDEOS.map((video) => (
+                <button key={video.id} onClick={() => setSelectedVideo({ ...video, type: 'tiktok' })} className="flex items-center justify-between gap-2 p-3 text-left text-xs font-bold transition-colors" style={{ background: '#141418', border: '1px solid #2A2A2A', borderRadius: '6px', color: '#F7F7F7' }}>
+                  <span className="truncate">{video.title}</span>
+                  <Play className="w-3.5 h-3.5 shrink-0" style={{ color: '#C8A44D' }} />
+                </button>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {selectedVideo && (
+          <div className="fixed inset-0 z-[70] flex items-center justify-center p-3 md:p-6" style={{ background: 'rgba(0,0,0,.9)' }} onClick={closeVideo} onTouchStart={(event) => setTouchStart(event.touches[0].clientY)} onTouchEnd={closeOnSwipe} role="dialog" aria-modal="true" aria-label={selectedVideo.title}>
+            <div className="relative w-full max-w-5xl" onClick={(event) => event.stopPropagation()}>
+              <button onClick={closeVideo} className="absolute -top-11 right-0 grid place-items-center w-9 h-9 text-white" style={{ border: '1px solid #555', borderRadius: '6px', background: '#141418' }} aria-label="Cerrar video"><X className="w-5 h-5" /></button>
+              <div className={selectedVideo.type === 'tiktok' ? 'mx-auto w-full max-w-[390px] aspect-[9/16] overflow-hidden bg-black' : 'w-full aspect-video overflow-hidden bg-black'} style={{ borderRadius: '8px', border: '1px solid #333' }}>
+                {selectedVideo.type === 'local' ? (
+                  <video src={selectedVideo.src} controls autoPlay playsInline preload="metadata" className="w-full h-full object-contain" />
+                ) : (
+                  <iframe src={`https://www.tiktok.com/player/v1/${selectedVideo.id}?controls=1&description=0`} title={selectedVideo.title} className="w-full h-full" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowFullScreen />
+                )}
+              </div>
+              <div className="flex items-center justify-between gap-4 mt-3">
+                <p className="text-sm font-semibold text-white">{selectedVideo.title}</p>
+                {selectedVideo.type === 'tiktok' && <a href={selectedVideo.url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1 text-xs font-bold" style={{ color: '#C8A44D' }}>Abrir TikTok <ExternalLink className="w-3.5 h-3.5" /></a>}
+              </div>
+            </div>
           </div>
         )}
 

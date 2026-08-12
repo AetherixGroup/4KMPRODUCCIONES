@@ -23,11 +23,11 @@ export const PORTFOLIO_PROJECTS = [
     date: "2026-02-14",
     duration: "18:45 min",
     videoUrl: "https://www.youtube.com/embed/gX72gHnC0C8", // Demo video embed
-    posterImage: "/img/hero.jpg",
+    posterImage: "./img/hero.jpg",
     gallery: [
-      "/img/hero.jpg",
-      "/img/drone.jpg",
-      "/img/logo.jpg"
+      "./img/hero.jpg",
+      "./img/drone.jpg",
+      "./img/logo.jpg"
     ],
     featured: true,
     trending: true,
@@ -60,10 +60,10 @@ export const PORTFOLIO_PROJECTS = [
     date: "2026-01-20",
     duration: "08:30 min",
     videoUrl: "https://www.youtube.com/embed/gX72gHnC0C8",
-    posterImage: "/img/hero.jpg",
+    posterImage: "./img/hero.jpg",
     gallery: [
-      "/img/hero.jpg",
-      "/img/drone.jpg"
+      "./img/hero.jpg",
+      "./img/drone.jpg"
     ],
     featured: true,
     trending: true,
@@ -96,10 +96,10 @@ export const PORTFOLIO_PROJECTS = [
     date: "2026-03-05",
     duration: "04:15 min",
     videoUrl: "https://www.youtube.com/embed/gX72gHnC0C8",
-    posterImage: "/img/drone.jpg",
+    posterImage: "./img/drone.jpg",
     gallery: [
-      "/img/drone.jpg",
-      "/img/hero.jpg"
+      "./img/drone.jpg",
+      "./img/hero.jpg"
     ],
     featured: true,
     trending: false,
@@ -132,10 +132,10 @@ export const PORTFOLIO_PROJECTS = [
     date: "2025-11-12",
     duration: "15:00 min",
     videoUrl: "https://www.youtube.com/embed/gX72gHnC0C8",
-    posterImage: "/img/hero.jpg",
+    posterImage: "./img/hero.jpg",
     gallery: [
-      "/img/hero.jpg",
-      "/img/logo.jpg"
+      "./img/hero.jpg",
+      "./img/logo.jpg"
     ],
     featured: false,
     trending: true,
@@ -168,10 +168,10 @@ export const PORTFOLIO_PROJECTS = [
     date: "2026-02-01",
     duration: "01:30 min",
     videoUrl: "https://www.youtube.com/embed/gX72gHnC0C8",
-    posterImage: "/img/hero.jpg",
+    posterImage: "./img/hero.jpg",
     gallery: [
-      "/img/hero.jpg",
-      "/img/logo.jpg"
+      "./img/hero.jpg",
+      "./img/logo.jpg"
     ],
     featured: true,
     trending: true,
@@ -204,10 +204,10 @@ export const PORTFOLIO_PROJECTS = [
     date: "2026-03-01",
     duration: "05:40 min",
     videoUrl: "https://www.youtube.com/embed/gX72gHnC0C8",
-    posterImage: "/img/hero.jpg",
+    posterImage: "./img/hero.jpg",
     gallery: [
-      "/img/hero.jpg",
-      "/img/drone.jpg"
+      "./img/hero.jpg",
+      "./img/drone.jpg"
     ],
     featured: false,
     trending: false,

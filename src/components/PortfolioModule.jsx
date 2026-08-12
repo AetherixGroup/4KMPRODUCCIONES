@@ -4,7 +4,7 @@ import { useApp } from '../context/AppContext';
 import { Search, Play, Heart, Sparkles, Filter, Eye, Award, Calendar, Video, Camera, ArrowRight, ShieldCheck } from 'lucide-react';
 
 export const PortfolioModule = () => {
-  const { portfolioProjects, setSelectedProject, likedProjects, toggleLikeProject, setBookingOpen, setQuoteOpen } = useApp();
+  const { portfolioProjects, setSelectedProject, likedProjects, toggleLikeProject } = useApp();
 
   const [activeCategory, setActiveCategory] = useState('todos');
   const [activeYear, setActiveYear] = useState('todos'); // todos | 2026 | 2025 | 2024
@@ -24,9 +24,6 @@ export const PortfolioModule = () => {
 
     return matchesCategory && matchesYear && matchesSearch;
   });
-
-  const featuredList = portfolioProjects.filter(p => p.featured);
-  const storiesList = portfolioProjects.filter(p => p.customerStory);
 
   return (
     <section id="portafolio" className="section-pad relative overflow-hidden" style={{ background: '#0A0A0A', borderTop: '1px solid #1A1A1A' }}>
@@ -51,6 +48,35 @@ export const PortfolioModule = () => {
           <p className="subtitle mt-4">
             Explora producciones audiovisuales de bodas, eventos corporativos, comerciales y tomas aéreas 4K. Selecciona cualquier proyecto para contratar directamente.
           </p>
+        </div>
+
+        {/* Reel destacado para la marca */}
+        <div className="glass-panel p-4 md:p-8 border-yellow-500/30 space-y-6">
+          {/* Header con info */}
+          <div className="max-w-2xl">
+            <div className="badge-gold label" style={{ display: 'inline-flex' }}>
+              <Sparkles className="w-3 h-3" style={{ color: '#C8A44D' }} />
+              REEL PROFESIONAL 4KM
+            </div>
+            <h3 className="font-cinzel text-2xl md:text-4xl font-bold text-white mt-3">
+              Producción Audiovisual <span style={{ color: '#C8A44D' }}>Premium</span>
+            </h3>
+            <p className="text-sm text-slate-300 leading-relaxed mt-4 max-w-xl">
+              El reel destacado queda integrado en el portafolio como pieza de presentación de la marca. Visualiza la calidad y estilo de nuestras producciones.
+            </p>
+          </div>
+
+          {/* Video full width */}
+          <div className="overflow-hidden rounded-2xl border border-yellow-500/20 bg-black w-full">
+            <video
+              src="./reel/4km-reel-profesional.mp4"
+              controls
+              playsInline
+              preload="metadata"
+              poster="./img/hero.jpg"
+              className="w-full h-auto aspect-video object-contain bg-black"
+            />
+          </div>
         </div>
 
         {/* Search Bar & Year Folder Selector */}
@@ -107,60 +133,7 @@ export const PortfolioModule = () => {
           </div>
         </div>
 
-        {/* SECTION 1: HISTORIAS DE NUESTROS CLIENTES (Customer Stories Highlight) */}
-        {activeCategory === 'todos' && !searchTerm && (
-          <div className="space-y-6 pt-4">
-            <div className="flex justify-between items-end border-l-4 border-yellow-400 pl-4">
-              <div>
-                <span className="text-xs font-bold text-yellow-400 uppercase tracking-widest">CASOS REALES & TESTIMONIOS</span>
-                <h3 className="font-cinzel text-2xl font-bold text-white">Historias de Nuestros Clientes</h3>
-              </div>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {storiesList.map((proj) => (
-                <div 
-                  key={proj.id}
-                  onClick={() => setSelectedProject(proj)}
-                  className="glass-panel glass-panel-hover p-6 flex flex-col md:flex-row gap-6 cursor-pointer border-yellow-500/20"
-                >
-                  <div className="relative w-full md:w-48 h-40 rounded-xl overflow-hidden shrink-0 border border-slate-800">
-                    <img src={proj.posterImage} alt={proj.title} className="w-full h-full object-cover" />
-                    <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-                      <div className="w-10 h-10 rounded-full bg-yellow-400/90 text-black flex items-center justify-center shadow-lg">
-                        <Play className="w-5 h-5 ml-0.5" />
-                      </div>
-                    </div>
-                  </div>
-
-                  <div className="space-y-3 flex-1">
-                    <div className="flex justify-between items-center">
-                      <span className="badge-gold">{proj.client}</span>
-                      <div className="flex text-yellow-400 text-xs">
-                        {'★'.repeat(proj.customerStory?.rating || 5)}
-                      </div>
-                    </div>
-
-                    <h4 className="font-cinzel text-lg font-bold text-white leading-snug">
-                      "{proj.customerStory?.title}"
-                    </h4>
-
-                    <p className="text-xs text-slate-300 line-clamp-2 italic">
-                      "{proj.customerStory?.quote}"
-                    </p>
-
-                    <div className="pt-2 flex justify-between items-center text-xs font-bold text-yellow-300">
-                      <span>Ver Historia & Película</span>
-                      <ArrowRight className="w-4 h-4" />
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* SECTION 2: GRID DE PROYECTOS (Filtered List) */}
+        {/* Proyectos y experiencias de clientes en una sola galería. */}
         <div className="space-y-6">
           <div className="flex justify-between items-center border-l-4 border-yellow-400 pl-4">
             <h3 className="font-cinzel text-2xl font-bold text-white">
@@ -231,6 +204,11 @@ export const PortfolioModule = () => {
                         {proj.title}
                       </h4>
                       <p className="text-xs text-slate-400 line-clamp-2 mt-1 font-light">{proj.subtitle}</p>
+                      {proj.customerStory && (
+                        <p className="text-xs text-slate-300 line-clamp-2 mt-3 border-l-2 border-yellow-400/70 pl-3 italic">
+                          &ldquo;{proj.customerStory.quote}&rdquo;
+                        </p>
+                      )}
                     </div>
 
                     {/* Action Buttons */}

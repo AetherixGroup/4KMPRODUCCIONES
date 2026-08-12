@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
 import { X, Play, Heart, Share2, Calendar, MapPin, Camera, Video, Users, ShoppingBag, Sparkles, CheckCircle2, Award, ChevronRight, Eye } from 'lucide-react';
 
@@ -15,6 +15,26 @@ export const ProjectDetailModal = () => {
 
   const [activePhoto, setActivePhoto] = useState(0);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [videoExpanded, setVideoExpanded] = useState(false);
+
+  useEffect(() => {
+    const onKeyDown = (e) => {
+      if (e.key === 'Escape') {
+        if (lightboxOpen) {
+          setLightboxOpen(false);
+          return;
+        }
+        if (videoExpanded) {
+          setVideoExpanded(false);
+          return;
+        }
+        setSelectedProject(null);
+      }
+    };
+
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [lightboxOpen, videoExpanded, setSelectedProject]);
 
   if (!selectedProject) return null;
 
@@ -67,14 +87,30 @@ export const ProjectDetailModal = () => {
         </div>
 
         {/* Scrollable Body */}
-        <div className="flex-1 overflow-y-auto space-y-8 p-6">
+        <div className="flex-1 overflow-y-auto space-y-8 p-3 sm:p-6">
           
           {/* Main Video Player Container */}
-          <div className="relative w-full aspect-video rounded-2xl overflow-hidden bg-black border border-yellow-500/30 shadow-2xl">
+          <div className={`relative w-full rounded-2xl overflow-hidden bg-black border border-yellow-500/30 shadow-2xl transition-all duration-300 ${videoExpanded ? 'h-[72vh] max-h-[82vh]' : 'aspect-video max-h-[72vh]'}`}>
+            <div className="absolute top-3 right-3 z-10 flex gap-2">
+              <button
+                onClick={() => setVideoExpanded(!videoExpanded)}
+                className="rounded-full bg-black/70 border border-slate-700 px-2.5 py-1.5 text-[10px] font-bold uppercase tracking-wider text-white"
+              >
+                {videoExpanded ? 'Reducir' : 'Pantalla'}
+              </button>
+              <button
+                onClick={() => setSelectedProject(null)}
+                className="rounded-full bg-black/70 border border-slate-700 p-2 text-white"
+                aria-label="Cerrar video"
+              >
+                <X className="w-4 h-4" />
+              </button>
+            </div>
             <iframe 
               src={selectedProject.videoUrl} 
               title={selectedProject.title}
-              className="w-full h-full border-0"
+              className="w-full h-full border-0 object-contain"
+              style={{ objectFit: 'contain' }}
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
             ></iframe>

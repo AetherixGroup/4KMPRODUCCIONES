@@ -4,6 +4,8 @@ import { SplashScreen } from './components/SplashScreen';
 import { Navbar } from './components/Navbar';
 import { HeroCarousel3D } from './components/HeroCarousel3D';
 import { PortfolioModule } from './components/PortfolioModule';
+import { About4KM } from './components/About4KM';
+import { PortfolioCategoryPage } from './components/PortfolioCategoryPage';
 import { ProjectDetailModal } from './components/ProjectDetailModal';
 import { ServicesCatalog } from './components/ServicesCatalog';
 import { DroneShowcase } from './components/DroneShowcase';
@@ -17,6 +19,7 @@ import { Footer } from './components/Footer';
 
 function AppContent() {
   const [showSplash, setShowSplash] = useState(true);
+  const portfolioCategory = new URLSearchParams(window.location.search).get('portafolio');
 
   return (
     <div className="min-h-screen relative" style={{ background: '#0A0A0A', color: '#F7F7F7' }}>
@@ -24,12 +27,7 @@ function AppContent() {
       
       <Navbar />
       
-      <main>
-        <HeroCarousel3D />
-        <PortfolioModule />
-        <ServicesCatalog />
-        <DroneShowcase />
-      </main>
+      {portfolioCategory ? <PortfolioCategoryPage categoryId={portfolioCategory} /> : <main><HeroCarousel3D /><PortfolioModule /><About4KM /><ServicesCatalog /><DroneShowcase /></main>}
 
       <Footer />
 

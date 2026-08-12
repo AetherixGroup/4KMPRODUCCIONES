@@ -44,16 +44,18 @@ export const SplashScreen = ({ onFinish }) => {
         {/* Logo mark */}
         <div className="relative">
           <div
-            className="w-24 h-24 rounded-full overflow-hidden"
+            className="w-24 h-24"
             style={{
               border: '1px solid rgba(200,164,77,0.35)',
+              borderRadius: '18px',
+              overflow: 'hidden',
               boxShadow: '0 0 40px rgba(200,164,77,0.18), 0 0 80px rgba(200,164,77,0.07)',
             }}
           >
             <img
-              src="/img/logo.jpg"
+              src="./img/logo.jpg"
               alt="4KM Producciones"
-              className="w-full h-full object-cover"
+              className="w-full h-full object-contain bg-[#0A0A0A]"
             />
           </div>
           {/* Outer ring pulse */}

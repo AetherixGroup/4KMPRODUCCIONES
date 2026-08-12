@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
+import { CONTACT_PHONE, WHATSAPP_LINK, sendToN8N } from '../config/siteConfig';
 import { X, Calculator, Download, Send, Sparkles, Camera, Video } from 'lucide-react';
 
 export const QuoteCalculatorModal = () => {
@@ -38,7 +39,19 @@ export const QuoteCalculatorModal = () => {
       `*Álbum Fine Art:* ${albumIncluded ? 'Sí' : 'No'}%0A` +
       `*Reels TikTok:* ${reelsIncluded ? 'Sí' : 'No'}%0A` +
       `*PRESUPUESTO ESTIMADO:* S/ ${estimatedTotal.toFixed(2)}`;
-    window.open(`https://wa.me/51994253131?text=${msg}`, '_blank');
+
+    sendToN8N({
+      type: 'quote',
+      serviceCategory,
+      hours,
+      cameras,
+      droneIncluded,
+      albumIncluded,
+      reelsIncluded,
+      estimatedTotal
+    });
+
+    window.open(`${WHATSAPP_LINK}?text=${msg}`, '_blank');
   };
 
   const handleAddToCartQuote = () => {
@@ -182,7 +195,7 @@ export const QuoteCalculatorModal = () => {
               onClick={handleWhatsAppSend}
               className="btn-gold py-2.5 px-4 text-xs font-bold flex items-center gap-1.5"
             >
-              <Send className="w-4 h-4" /> WHATSAPP (994253131)
+              <Send className="w-4 h-4" /> WHATSAPP ({CONTACT_PHONE})
             </button>
           </div>
         </div>

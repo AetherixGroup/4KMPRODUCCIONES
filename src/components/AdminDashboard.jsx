@@ -22,7 +22,7 @@ export const AdminDashboard = () => {
     date: new Date().toISOString().split('T')[0],
     duration: '05:00 min',
     videoUrl: 'https://www.youtube.com/embed/gX72gHnC0C8',
-    posterImage: '/img/hero.jpg',
+    posterImage: './img/hero.jpg',
     linkedServiceName: 'Boda Premium VIP',
     linkedServicePrice: 4500
   });
@@ -64,7 +64,7 @@ export const AdminDashboard = () => {
       date: new Date().toISOString().split('T')[0],
       duration: '05:00 min',
       videoUrl: 'https://www.youtube.com/embed/gX72gHnC0C8',
-      posterImage: '/img/hero.jpg',
+      posterImage: './img/hero.jpg',
       linkedServiceName: 'Boda Premium VIP',
       linkedServicePrice: 4500
     });

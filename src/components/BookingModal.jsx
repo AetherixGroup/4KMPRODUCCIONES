@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useApp } from '../context/AppContext';
+import { CONTACT_PHONE, sendToN8N } from '../config/siteConfig';
 import { X, Calendar, Clock, MapPin, CheckCircle2, Send } from 'lucide-react';
 
 export const BookingModal = () => {
@@ -36,6 +37,18 @@ export const BookingModal = () => {
       notes: formData.notes
     });
 
+    sendToN8N({
+      type: 'booking',
+      name: formData.name,
+      phone: formData.phone,
+      email: formData.email,
+      eventType: formData.eventType,
+      date: formData.date,
+      time: formData.time,
+      location: formData.location,
+      notes: formData.notes
+    });
+
     setSubmitted(true);
   };
 
@@ -67,7 +80,7 @@ export const BookingModal = () => {
               Gracias <span className="text-yellow-300 font-bold">{formData.name}</span>. Hemos bloqueado preliminarmente el <span className="text-yellow-300 font-bold">{formData.date}</span> para tu evento: {formData.eventType}.
             </p>
             <p className="text-xs text-slate-400">
-              Un productor de 4KM PRODUCCIONES se comunicará a tu teléfono ({formData.phone}) o desde nuestro WhatsApp (994253131) en menos de 15 minutos para ultimar detalles.
+              Un productor de 4KM PRODUCCIONES se comunicará a tu teléfono ({formData.phone}) o desde nuestro WhatsApp ({CONTACT_PHONE}) en menos de 15 minutos para ultimar detalles.
             </p>
 
             <button 
@@ -98,7 +111,7 @@ export const BookingModal = () => {
                 <input 
                   type="tel"
                   required
-                  placeholder="Ej: 994253131"
+                  placeholder="Ej: 924130007"
                   value={formData.phone}
                   onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                   className="glass-input w-full text-xs"
