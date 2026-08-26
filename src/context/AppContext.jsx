@@ -13,7 +13,6 @@ export const AppProvider = ({ children }) => {
   const [selectedBookingItem, setSelectedBookingItem] = useState(null);
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [gameOpen, setGameOpen] = useState(false);
-  const [adminOpen, setAdminOpen] = useState(false);
   const [legalOpen, setLegalOpen] = useState(false);
   const [legalType, setLegalType] = useState('privacy');
 
@@ -23,52 +22,12 @@ export const AppProvider = ({ children }) => {
   const [likedProjects, setLikedProjects] = useState(['proj-1', 'proj-3']);
 
   // User & Rewards State
-  const [user, setUser] = useState({
-    name: 'Cliente VIP',
-    email: 'cliente@4kmproducciones.com',
-    role: 'cliente',
-    isLoggedIn: true
-  });
   const [rewardsPoints, setRewardsPoints] = useState(150);
   const [appliedCoupon, setAppliedCoupon] = useState(null);
 
-  // Dashboard Mock Data
-  const [ordersList, setOrdersList] = useState([
-    {
-      id: "4KM-9821",
-      date: "2026-08-05",
-      client: "María Torres",
-      email: "maria.torres@gmail.com",
-      phone: "+51 987654321",
-      items: ["Boda Standard", "USB de Cristal 64GB"],
-      total: 3050,
-      status: "Confirmado",
-      paymentMethod: "Mercado Pago"
-    },
-    {
-      id: "4KM-9822",
-      date: "2026-08-06",
-      client: "Inmobiliaria Horizon",
-      email: "contacto@horizon.pe",
-      phone: "+51 912345678",
-      items: ["Inspección & Inmobiliaria Drone", "Marketing Standard Pro"],
-      total: 3350,
-      status: "En Proceso",
-      paymentMethod: "Transferencia BCP"
-    }
-  ]);
-
-  const [bookingsList, setBookingsList] = useState([
-    {
-      id: "BK-401",
-      clientName: "Familia Rivas",
-      date: "2026-09-15",
-      time: "16:00",
-      event: "15 Años Standard",
-      location: "Miraflores, Lima",
-      status: "Agendado"
-    }
-  ]);
+  // The public bundle must never contain administrative or client records.
+  const [ordersList, setOrdersList] = useState([]);
+  const [bookingsList, setBookingsList] = useState([]);
 
   // Cart Functions
   const addToCart = (item) => {
@@ -219,8 +178,6 @@ export const AppProvider = ({ children }) => {
         setQuoteOpen,
         gameOpen,
         setGameOpen,
-        adminOpen,
-        setAdminOpen,
         legalOpen,
         setLegalOpen,
         legalType,
@@ -231,8 +188,6 @@ export const AppProvider = ({ children }) => {
         likedProjects,
         toggleLikeProject,
         addPortfolioProject,
-        user,
-        setUser,
         rewardsPoints,
         addRewardPoints,
         ordersList,

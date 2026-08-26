@@ -4,15 +4,15 @@ import { useApp } from '../context/AppContext';
 import { Camera, Video, CheckCircle2, ShoppingBag, Calendar, Calculator, Clock, Users, Disc, Check, Bot, Cpu, ExternalLink, Film, Play, X } from 'lucide-react';
 
 const LOCAL_SHOWREEL_VIDEOS = [
-  { title: 'Inmobiliaria', src: './img/YDRAY-ALEYDA-INMOBILIARIA.mp4', cover: './img/Screenshot_1.png' },
-  { title: 'Comercial 15 Anos', src: './img/YDRAY-COMERCIAL-15-ANOS.mp4', cover: './img/Screenshot_2.png' },
-  { title: 'Comercial Donattos', src: './img/YDRAY-COMERCIAL-DONATTOS-2.mp4', cover: './img/Screenshot_3.png' },
-  { title: 'Publicidad Manya', src: './img/YDRAY-MANYA-PUBLICIDAD.mp4', cover: './img/Screenshot_4.png' },
-  { title: 'Publicidad Power Brasa', src: './img/YDRAY-power-brasa-publicidad.mp4', cover: './img/Screenshot_5.png' },
-  { title: 'Proyecto Ortiz', src: './img/YDRAY-PROYECTO-ORTIZ.mp4', cover: './img/Screenshot_6.png' },
-  { title: 'Produccion Drone', src: './img/YDRAY-PUBLICIDAD-DRONE-OFICIAL.mp4', cover: './img/Screenshot_7.png' },
-  { title: 'Reel Carrera de Motos', src: './img/YDRAY-REEL-carrera-de-motos.mp4', cover: './img/Screenshot_8.png' },
-  { title: 'Torneo Parrillero', src: './img/YDRAY-torneo-parrillero-nmr-2-OFICIAL-.mp4', cover: './img/Screenshot_9.png' },
+  { title: 'Inmobiliaria', src: './img/YDRAY-ALEYDA-INMOBILIARIA_web.mp4', cover: './img/Screenshot_1.png' },
+  { title: 'Comercial 15 Anos', src: './img/YDRAY-COMERCIAL-15-ANOS_web.mp4', cover: './img/Screenshot_2.png' },
+  { title: 'Comercial Donattos', src: './img/YDRAY-COMERCIAL-DONATTOS-2_web.mp4', cover: './img/Screenshot_3.png' },
+  { title: 'Publicidad Manya', src: './img/YDRAY-MANYA-PUBLICIDAD_web.mp4', cover: './img/Screenshot_4.png' },
+  { title: 'Publicidad Power Brasa', src: './img/YDRAY-power-brasa-publicidad_web.mp4', cover: './img/Screenshot_5.png' },
+  { title: 'Proyecto Ortiz', src: './img/YDRAY-PROYECTO-ORTIZ_web.mp4', cover: './img/Screenshot_6.png' },
+  { title: 'Produccion Drone', src: './img/YDRAY-PUBLICIDAD-DRONE-OFICIAL_web.mp4', cover: './img/Screenshot_7.png' },
+  { title: 'Reel Carrera de Motos', src: './img/YDRAY-REEL-carrera-de-motos_web.mp4', cover: './img/Screenshot_8.png' },
+  { title: 'Torneo Parrillero', src: './img/YDRAY-torneo-parrillero-nmr-2-OFICIAL-_web.mp4', cover: './img/Screenshot_9.png' },
 ];
 
 const TIKTOK_VIDEOS = [

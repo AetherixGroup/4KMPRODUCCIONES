@@ -22,12 +22,11 @@ export const PORTFOLIO_PROJECTS = [
     city: "Lima, Perú",
     date: "2026-02-14",
     duration: "18:45 min",
-    videoUrl: "https://www.youtube.com/embed/gX72gHnC0C8", // Demo video embed
-    posterImage: "./img/hero.jpg",
+    videoUrl: "https://www.youtube.com/embed/gX72gHnC0C8",
+    posterImage: "https://images.unsplash.com/photo-1519741497674-611481863552?w=900&auto=format&fit=crop&q=80",
     gallery: [
-      "./img/hero.jpg",
-      "./img/drone.jpg",
-      "./img/logo.jpg"
+      "https://images.unsplash.com/photo-1519741497674-611481863552?w=900&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1511285560929-80b456fea0bc?w=900&auto=format&fit=crop&q=80"
     ],
     featured: true,
     trending: true,
@@ -60,10 +59,10 @@ export const PORTFOLIO_PROJECTS = [
     date: "2026-01-20",
     duration: "08:30 min",
     videoUrl: "https://www.youtube.com/embed/gX72gHnC0C8",
-    posterImage: "./img/hero.jpg",
+    posterImage: "https://images.unsplash.com/photo-1511578314322-379afb476865?w=900&auto=format&fit=crop&q=80",
     gallery: [
-      "./img/hero.jpg",
-      "./img/drone.jpg"
+      "https://images.unsplash.com/photo-1511578314322-379afb476865?w=900&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=900&auto=format&fit=crop&q=80"
     ],
     featured: true,
     trending: true,
@@ -96,10 +95,10 @@ export const PORTFOLIO_PROJECTS = [
     date: "2026-03-05",
     duration: "04:15 min",
     videoUrl: "https://www.youtube.com/embed/gX72gHnC0C8",
-    posterImage: "./img/drone.jpg",
+    posterImage: "https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=900&auto=format&fit=crop&q=80",
     gallery: [
-      "./img/drone.jpg",
-      "./img/hero.jpg"
+      "https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=900&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1527977966376-1c8408f9f108?w=900&auto=format&fit=crop&q=80"
     ],
     featured: true,
     trending: false,
@@ -132,10 +131,10 @@ export const PORTFOLIO_PROJECTS = [
     date: "2025-11-12",
     duration: "15:00 min",
     videoUrl: "https://www.youtube.com/embed/gX72gHnC0C8",
-    posterImage: "./img/hero.jpg",
+    posterImage: "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=900&auto=format&fit=crop&q=80",
     gallery: [
-      "./img/hero.jpg",
-      "./img/logo.jpg"
+      "https://images.unsplash.com/photo-1513151233558-d860c5398176?w=900&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=900&auto=format&fit=crop&q=80"
     ],
     featured: false,
     trending: true,
@@ -168,10 +167,10 @@ export const PORTFOLIO_PROJECTS = [
     date: "2026-02-01",
     duration: "01:30 min",
     videoUrl: "https://www.youtube.com/embed/gX72gHnC0C8",
-    posterImage: "./img/hero.jpg",
+    posterImage: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=900&auto=format&fit=crop&q=80",
     gallery: [
-      "./img/hero.jpg",
-      "./img/logo.jpg"
+      "https://images.unsplash.com/photo-1611162617474-5b21e879e113?w=900&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1574717024653-61fd2cf4d44d?w=900&auto=format&fit=crop&q=80"
     ],
     featured: true,
     trending: true,
@@ -204,10 +203,10 @@ export const PORTFOLIO_PROJECTS = [
     date: "2026-03-01",
     duration: "05:40 min",
     videoUrl: "https://www.youtube.com/embed/gX72gHnC0C8",
-    posterImage: "./img/hero.jpg",
+    posterImage: "https://images.unsplash.com/photo-1577495508048-b635879837f1?w=900&auto=format&fit=crop&q=80",
     gallery: [
-      "./img/hero.jpg",
-      "./img/drone.jpg"
+      "https://images.unsplash.com/photo-1577495508048-b635879837f1?w=900&auto=format&fit=crop&q=80",
+      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=900&auto=format&fit=crop&q=80"
     ],
     featured: false,
     trending: false,
