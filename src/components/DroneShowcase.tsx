@@ -2,7 +2,6 @@ import React from 'react';
 import { DRONE_SERVICES } from '../data/catalog';
 import { useApp } from '../context/AppContext';
 import { Video, ShieldCheck, Camera, Check, ShoppingBag, Calendar, Globe as GlobeIcon } from 'lucide-react';
-import Globe from './effects/Globe';
 
 export const DroneShowcase = () => {
   const { addToCart, openBookingWithItem } = useApp();
@@ -62,13 +61,18 @@ export const DroneShowcase = () => {
             </div>
           </div>
 
-          {/* Right Globe / Drone Tech Visual */}
+          {/* Right Image / Drone Tech Visual */}
           <div className="lg:col-span-5 relative group">
             <div
               className="relative rounded-2xl overflow-hidden bg-[#141418] h-[360px] sm:h-[400px] flex items-center justify-center border border-[rgba(200,164,77,0.25)] shadow-2xl"
             >
-              <Globe scale={9} speed={1.5} outlineColor="#C8A44D" oceanColor="#0A0A0E" />
-              <div className="absolute inset-0 pointer-events-none bg-radial-vignette" style={{
+              <img
+                src="./img/drone.jpg"
+                alt="Drone 4K Cinema - 4KM Producciones"
+                className="w-full h-full object-cover"
+                onError={(e) => { (e.target as HTMLImageElement).src = './img/hero.jpg'; }}
+              />
+              <div className="absolute inset-0 pointer-events-none" style={{
                 background: 'radial-gradient(circle at 50% 50%, transparent 40%, rgba(10,10,14,0.7) 100%)'
               }} />
               <div className="absolute bottom-4 left-4 right-4 flex justify-between items-end bg-[#0A0A0E]/80 backdrop-blur-md p-3.5 rounded-xl border border-white/10">

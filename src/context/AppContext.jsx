@@ -21,8 +21,7 @@ export const AppProvider = ({ children }) => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [likedProjects, setLikedProjects] = useState(['proj-1', 'proj-3']);
 
-  // User & Rewards State
-  const [rewardsPoints, setRewardsPoints] = useState(150);
+  // User State
   const [appliedCoupon, setAppliedCoupon] = useState(null);
 
   // The public bundle must never contain administrative or client records.
@@ -78,15 +77,6 @@ export const AppProvider = ({ children }) => {
       setAppliedCoupon({ code: cleanCode, percentage: 10 });
       return { success: true, message: "¡Cupon de 10% aplicado correctamente!" };
     }
-    if (cleanCode === "PUNTOS50") {
-      if (rewardsPoints >= 50) {
-        setAppliedCoupon({ code: cleanCode, percentage: 15 });
-        setRewardsPoints((prev) => prev - 50);
-        return { success: true, message: "¡Has canjeado 50 Puntos por 15% de descuento!" };
-      } else {
-        return { success: false, message: "Necesitas al menos 50 Puntos 4KM para este cupón." };
-      }
-    }
     return { success: false, message: "Cupón no válido o expirado." };
   };
 
@@ -123,11 +113,6 @@ export const AppProvider = ({ children }) => {
     };
     setPortfolioProjects((prev) => [created, ...prev]);
     return created;
-  };
-
-  // Add points from minijuego
-  const addRewardPoints = (points) => {
-    setRewardsPoints((prev) => prev + points);
   };
 
   // Add new order
@@ -188,8 +173,6 @@ export const AppProvider = ({ children }) => {
         likedProjects,
         toggleLikeProject,
         addPortfolioProject,
-        rewardsPoints,
-        addRewardPoints,
         ordersList,
         createOrder,
         bookingsList,

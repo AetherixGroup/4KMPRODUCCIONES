@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { AppProvider } from './context/AppContext';
 import { SplashScreen } from './components/SplashScreen';
 import { Navbar } from './components/Navbar';
-import { Hero } from './components/Hero';
 import { About4KM } from './components/About4KM';
 import { CampaignCarousel } from './components/CampaignCarousel';
 import { ReelSection } from './components/ReelSection';
@@ -17,7 +16,7 @@ import { DroneShowcase } from './components/DroneShowcase';
 import { SmartCartDrawer } from './components/SmartCartDrawer';
 import { BookingModal } from './components/BookingModal';
 import { QuoteCalculatorModal } from './components/QuoteCalculatorModal';
-import { Game4KMRewards } from './components/Game4KMRewards';
+
 import { LegalModal } from './components/LegalModal';
 import { Footer } from './components/Footer';
 
@@ -35,16 +34,15 @@ function AppContent() {
         <PortfolioCategoryPage categoryId={portfolioCategory} />
       ) : (
         <main>
-          <Hero />
           <About4KM />
           <CampaignCarousel />
           <ReelSection />
           <ServicesCatalog />
           <CategoryShowcase />
-          <ProductSection />
-          <AudioVisualPackages />
           <PortfolioModule />
+          <AudioVisualPackages />
           <DroneShowcase />
+          <ProductSection />
         </main>
       )}
 
@@ -55,7 +53,7 @@ function AppContent() {
       <SmartCartDrawer />
       <BookingModal />
       <QuoteCalculatorModal />
-      <Game4KMRewards />
+
       <LegalModal />
     </div>
   );

@@ -2,19 +2,14 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { ArrowLeft, ChevronLeft, ChevronRight, Play, Images, Sparkles, Video, Film, CheckCircle2, Send, Tag } from 'lucide-react';
 import { PORTFOLIO_CATEGORIES } from '../data/portfolioData';
 import { useApp } from '../context/AppContext';
-import TwinGalaxyRings from './effects/TwinGalaxyRings';
-import Vortex from './effects/Vortex';
-import Globe from './effects/Globe';
-import DigitalRain from './effects/DigitalRain';
-import MetallicCube from './effects/MetallicCube';
 
-const CATEGORY_EFFECTS: Record<string, React.ReactNode> = {
-  bodas: <TwinGalaxyRings background="#0A0A0A" colors={["#C8A44D", "#E8C96A", "#9A7020", "#FFF"]} density={65} speed={25} armCount={4} />,
-  corporativos: <MetallicCube sizePercent={85} dragSensitivity={3} />,
-  drone: <Globe scale={8} speed={1.5} outlineColor="#C8A44D" oceanColor="#0A0A0E" />,
-  quinceanos: <Vortex smoke="#C8A44D" deep="#0A0A0A" ember="#E8C96A" speed={6} swirl={6} density={5} />,
-  reels: <DigitalRain headColor="#FFF" trailColor="#C8A44D" speed={7} glyphSize={16} density={40} />,
-  institucionales: <TwinGalaxyRings background="#0A0A0A" colors={["#C8A44D", "#D4AF37", "#666", "#FFF"]} density={70} speed={30} armCount={5} />,
+const CATEGORY_BACKGROUNDS: Record<string, string> = {
+  bodas: './img/hero.jpg',
+  corporativos: './img/mockup.jpg',
+  drone: './img/drone.jpg',
+  quinceanos: './img/hero.jpg',
+  reels: './img/mockup.jpg',
+  institucionales: './img/drone.jpg',
 };
 
 // 100% Unique non-repeating images and showreels per category
@@ -118,7 +113,7 @@ export const PortfolioCategoryPage: React.FC<PortfolioCategoryPageProps> = ({ ca
     src: item.src
   }));
 
-  const effectComponent = CATEGORY_EFFECTS[category.id] || CATEGORY_EFFECTS.bodas;
+  const categoryBg = CATEGORY_BACKGROUNDS[category.id] || CATEGORY_BACKGROUNDS.bodas;
 
   useEffect(() => {
     setActiveSlide(0);
@@ -176,7 +171,8 @@ export const PortfolioCategoryPage: React.FC<PortfolioCategoryPageProps> = ({ ca
             {/* 3D Visual Effect Card for Category */}
             <div className="lg:col-span-4 h-48 sm:h-56 relative rounded-2xl overflow-hidden bg-[#14141A] border border-[rgba(200,164,77,0.3)] shadow-2xl flex items-center justify-center">
               <div className="absolute inset-0 pointer-events-auto opacity-85">
-                {effectComponent}
+                <img src={categoryBg} alt="" className="absolute inset-0 w-full h-full object-cover opacity-20" onError={(e) => { (e.target as HTMLImageElement).src = './img/hero.jpg'; }} />
+                <div className="absolute inset-0 bg-gradient-to-b from-[#0A0A0A] via-[#0A0A0A]/60 to-[#0A0A0A]" />
               </div>
               <div className="absolute bottom-3 left-3 right-3 p-2.5 rounded-xl bg-[#0A0A0A]/80 backdrop-blur-md border border-white/10 text-center">
                 <span className="text-[0.65rem] font-bold text-[#C8A44D] uppercase tracking-wider">
@@ -367,7 +363,7 @@ export const PortfolioCategoryPage: React.FC<PortfolioCategoryPageProps> = ({ ca
         >
           <div className="w-full max-w-5xl space-y-4" onClick={(e) => e.stopPropagation()}>
             {selectedMedia.kind === 'video' ? (
-              <video src={selectedMedia.src} controls autoPlay playsInline className="w-full max-h-[80vh] bg-black rounded-2xl object-contain shadow-2xl" />
+              <video src={selectedMedia.src} controls playsInline preload="none" className="w-full max-h-[80vh] bg-black rounded-2xl object-contain shadow-2xl" />
             ) : (
               <img src={selectedMedia.src} alt={selectedMedia.alt || 'Media 4KM'} className="w-full max-h-[80vh] rounded-2xl object-contain shadow-2xl" />
             )}

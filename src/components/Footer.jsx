@@ -34,7 +34,7 @@ const IconBtn = ({ href, title, children, hoverColor = '#C8A44D' }) => (
 );
 
 export const Footer = () => {
-  const { setLegalOpen, setLegalType, setQuoteOpen, setGameOpen } = useApp();
+  const { setLegalOpen, setLegalType, setQuoteOpen } = useApp();
 
   const openLegal = (type) => { setLegalType(type); setLegalOpen(true); };
 
@@ -144,15 +144,8 @@ export const Footer = () => {
                   Cotizador Inteligente IA
                 </button>
               </li>
-              <li>
-                <button
-                  onClick={() => setGameOpen(true)}
-                  style={linkStyle} {...linkHover}
-                  className="transition-colors duration-200"
-                >
-                  4KM Rewards (Acumular Puntos)
-                </button>
-              </li>
+
+
               <li>
                 <a
                   href={OFFICIAL_SOCIALS.whatsapp}

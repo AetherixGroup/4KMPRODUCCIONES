@@ -1,57 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import TwinGalaxyRings from './effects/TwinGalaxyRings';
-import LightBloom from './effects/LightBloom';
-import BlockDrift from './effects/BlockDrift';
-import { Sparkles } from 'lucide-react';
-
-const EXACT_3_EFFECTS = [
-  {
-    id: 'galaxy',
-    name: 'TWIN GALAXY RINGS 3D',
-    tagline: 'Renderizado Cinemático WebGL de Partículas',
-    component: (
-      <TwinGalaxyRings
-        background="#0A0A0A"
-        colors={["#C8A44D", "#E8C96A", "#9A7020", "#FFFFFF"]}
-        density={80}
-        dotSize={2}
-        speed={35}
-        armCount={5}
-      />
-    )
-  },
-  {
-    id: 'bloom',
-    name: 'LIGHT BLOOM SHAFTS',
-    tagline: 'Sistema de Iluminación Óptica Estudiantil',
-    component: (
-      <LightBloom
-        background="#0A0A0A"
-        baseColor="#C8A44D"
-        accentColor="#FFFFFF"
-        variant="shafts"
-        speed={40}
-      />
-    )
-  },
-  {
-    id: 'drift',
-    name: 'BLOCK DRIFT MATRIX 3D',
-    tagline: 'Geometría Espacial Cinematográfica',
-    component: (
-      <BlockDrift
-        near="#FFFFFF"
-        far="#C8A44D"
-        edge="#000000"
-        grid={15}
-        blockSize={10}
-        gap={20}
-        layers={12}
-        speed={10}
-      />
-    )
-  }
-];
 
 interface SplashScreenProps {
   onFinish?: () => void;
@@ -59,15 +6,9 @@ interface SplashScreenProps {
 
 export const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish }) => {
   const [phase, setPhase] = useState<'enter' | 'loading' | 'exit'>('enter');
-  const [currentSlideIndex, setCurrentSlideIndex] = useState(0);
   const [progress, setProgress] = useState(0);
 
-  // Cycle through EXACTLY 3 unique slides during 5-second intro
   useEffect(() => {
-    const slideTimer = setInterval(() => {
-      setCurrentSlideIndex((prev) => (prev + 1) % EXACT_3_EFFECTS.length);
-    }, 1600);
-
     const progressTimer = setInterval(() => {
       setProgress((prev) => {
         if (prev >= 100) {
@@ -79,21 +20,18 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish }) => {
     }, 60);
 
     const tEnter = setTimeout(() => setPhase('loading'), 200);
-    const tExit = setTimeout(() => setPhase('exit'), 5000);
+    const tExit = setTimeout(() => setPhase('exit'), 3500);
     const tFinish = setTimeout(() => {
       if (onFinish) onFinish();
-    }, 5500);
+    }, 4000);
 
     return () => {
-      clearInterval(slideTimer);
       clearInterval(progressTimer);
       clearTimeout(tEnter);
       clearTimeout(tExit);
       clearTimeout(tFinish);
     };
   }, [onFinish]);
-
-  const currentSlide = EXACT_3_EFFECTS[currentSlideIndex];
 
   return (
     <div
@@ -104,20 +42,15 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish }) => {
         pointerEvents: phase === 'exit' ? 'none' : 'all',
       }}
     >
-      {/* ── Background 3D Effect Carousel (3 Unique Only) ── */}
-      <div className="absolute inset-0 z-0 opacity-40 transition-opacity duration-700">
-        {currentSlide.component}
-      </div>
-
-      {/* ── Overlay Mask ── */}
+      {/* Ambient animated glow */}
       <div
-        className="absolute inset-0 z-1 pointer-events-none"
+        className="absolute inset-0 z-0 pointer-events-none"
         style={{
-          background: 'radial-gradient(ellipse at 50% 50%, rgba(10,10,10,0.3) 0%, rgba(10,10,10,0.85) 75%, #0A0A0A 100%)'
+          background: 'radial-gradient(ellipse at 50% 40%, rgba(200,164,77,0.08) 0%, transparent 70%)',
         }}
       />
 
-      {/* ── Center Brand & Loading Box ── */}
+      {/* Center Brand & Loading Box */}
       <div className="relative z-10 container-xl px-6 flex flex-col items-center justify-center space-y-8 text-center max-w-xl mx-auto">
         
         {/* Brand Logo Box */}
@@ -145,19 +78,8 @@ export const SplashScreen: React.FC<SplashScreenProps> = ({ onFinish }) => {
             4KM <span className="text-gold-gradient">PRODUCCIONES</span>
           </h1>
           <p className="font-montserrat text-xs tracking-[0.3em] text-[#C8A44D] font-bold uppercase">
-            CINEMATOGRAFÍA AUDIOVISUAL & TECNOLOGÍA 3D
+            CINEMATOGRAFÍA AUDIOVISUAL & TECNOLOGÍA
           </p>
-        </div>
-
-        {/* Current Effect Tag (1 of 3) */}
-        <div className="flex flex-col items-center gap-1.5 py-2.5 px-6 rounded-full bg-[#14141A]/90 border border-[rgba(200,164,77,0.35)] backdrop-blur-md">
-          <div className="flex items-center gap-2 text-xs font-bold text-[#E8C96A] tracking-wider uppercase">
-            <Sparkles className="w-3.5 h-3.5 text-[#C8A44D]" />
-            <span>MOTOR 3D ({currentSlideIndex + 1}/3): {currentSlide.name}</span>
-          </div>
-          <span className="text-[0.65rem] text-[#A0A0A8] font-light">
-            {currentSlide.tagline}
-          </span>
         </div>
 
         {/* Progress Bar */}

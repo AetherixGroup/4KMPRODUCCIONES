@@ -1,6 +1,5 @@
 import React from 'react';
-import { Aperture, Eye, HeartHandshake, Sparkles, Cpu, Award } from 'lucide-react';
-import MetallicCube from './effects/MetallicCube';
+import { Aperture, Eye, HeartHandshake, Sparkles } from 'lucide-react';
 
 const pillars = [
   {
@@ -35,7 +34,7 @@ export const About4KM: React.FC = () => (
         <div className="lg:col-span-7 space-y-6">
           <div className="badge-gold inline-flex items-center gap-1.5 px-3.5 py-1 rounded-full text-xs font-bold tracking-widest uppercase">
             <Sparkles className="w-3.5 h-3.5" />
-            <span>EXCELENCIA AUDIOVISUAL & 3D</span>
+            <span>EXCELENCIA AUDIOVISUAL</span>
           </div>
 
           <h2 className="type-heading font-cinzel text-3xl sm:text-5xl font-bold text-white leading-tight">
@@ -47,7 +46,7 @@ export const About4KM: React.FC = () => (
             Somos una productora audiovisual independiente nacida con el propósito de elevar los estándares visuales de marcas, eventos sociales, producciones corporativas e industriales.
           </p>
           <p className="text-[#888892] text-sm leading-relaxed font-light">
-            Fusionamos estética cinematográfica de nivel internacional, cámaras de cine 4K/8K, drones certificados y tecnología 3D/IA para crear experiencias visuales inolvidables.
+            Fusionamos estética cinematográfica de nivel internacional, cámaras de cine 4K/8K, drones certificados y tecnología de vanguardia para crear experiencias visuales inolvidables.
           </p>
 
           <div className="grid grid-cols-3 gap-4 pt-4 border-t border-white/5">
@@ -66,16 +65,15 @@ export const About4KM: React.FC = () => (
           </div>
         </div>
 
-        {/* Right Column: Interactive 3D Metallic Cube */}
+        {/* Right Column: Image / Visual */}
         <div className="lg:col-span-5 h-[360px] sm:h-[420px] w-full relative rounded-2xl overflow-hidden bg-[#14141A] border border-[rgba(255,255,255,0.06)] shadow-2xl flex items-center justify-center group">
-          <MetallicCube sizePercent={85} dragSensitivity={4} />
-          
-          <div className="absolute bottom-4 left-4 right-4 p-3 rounded-xl bg-[rgba(10,10,10,0.8)] backdrop-blur-md border border-white/10 flex items-center justify-between text-xs">
-            <span className="text-[#A0A0A8] flex items-center gap-1.5 font-medium">
-              <Cpu className="w-3.5 h-3.5 text-[#C8A44D]" /> Arrastra para girar el cubo 3D
-            </span>
-            <span className="badge-gold text-[0.6rem]">TECNOLOGÍA 3D</span>
-          </div>
+          <img
+            src="./img/hero.jpg"
+            alt="4KM Producciones - Producción Audiovisual"
+            className="w-full h-full object-cover"
+            onError={(e) => { (e.target as HTMLImageElement).src = './img/mockup.jpg'; }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-[#14141A] via-transparent to-transparent opacity-60" />
         </div>
 
       </div>

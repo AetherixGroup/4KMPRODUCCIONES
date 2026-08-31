@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import TwinGalaxyRings from './effects/TwinGalaxyRings';
-import LightBloom from './effects/LightBloom';
-import BlockDrift from './effects/BlockDrift';
 import { useApp } from '../context/AppContext';
-import { ChevronDown, Play, Calendar, Sparkles, ChevronLeft, ChevronRight, Video, Camera, Award } from 'lucide-react';
+import { ChevronDown, Play, Calendar, Sparkles, ChevronLeft, ChevronRight } from 'lucide-react';
 
 const HERO_SLIDES = [
   {
@@ -14,18 +11,8 @@ const HERO_SLIDES = [
     subtitle: 'Producción audiovisual cinematográfica 4K/8K que convierte ideas en experiencias visuales extraordinarias.',
     ctaPrimary: 'VER PORTAFOLIO',
     ctaSecondary: 'SOLICITAR COTIZACIÓN',
-    effectName: 'TWIN GALAXY RINGS 3D',
+    image: './img/hero.jpg',
     features: ['Filmación 4K / 8K', 'Drone Cinematográfico', 'Edición & Color Grading'],
-    component: (
-      <TwinGalaxyRings
-        background="#0A0A0A"
-        colors={["#C8A44D", "#E8C96A", "#9A7020", "#FFFFFF"]}
-        density={75}
-        dotSize={2}
-        speed={35}
-        armCount={5}
-      />
-    )
   },
   {
     id: 'slide-2',
@@ -35,46 +22,26 @@ const HERO_SLIDES = [
     subtitle: 'Capturamos emociones, momentos inolvidables y marcas con iluminación de estudio y ópticas cinematográficas.',
     ctaPrimary: 'EXPLORAR PAQUETES',
     ctaSecondary: 'VER SHOWREELS',
-    effectName: 'LIGHT BLOOM SHAFTS 3D',
+    image: './img/mockup.jpg',
     features: ['Fotografía 8K Ilimitada', 'Iluminación Estudiantil', 'Dirección Creativa'],
-    component: (
-      <LightBloom
-        background="#0A0A0A"
-        baseColor="#C8A44D"
-        accentColor="#FFFFFF"
-        variant="shafts"
-        speed={35}
-      />
-    )
   },
   {
     id: 'slide-3',
     badge: 'ESTRUCTURA MODULAR & DRONE AÉREO',
     title: 'TECNOLOGÍA AUDIOVISUAL',
     highlightTitle: 'AUDIOVISUAL',
-    subtitle: 'Pilotos certificados por la MTC y tecnología 3D para tomas aéreas impresionantes en todo el Perú.',
+    subtitle: 'Pilotos certificados por la MTC y tecnología para tomas aéreas impresionantes en todo el Perú.',
     ctaPrimary: 'VER COBERTURA DRONE',
     ctaSecondary: 'RESERVAR FECHA',
-    effectName: 'BLOCK DRIFT MATRIX 3D',
+    image: './img/drone.jpg',
     features: ['Pilotos Licenciados MTC', 'Video 4K HDR 60fps', 'Seguro Aeronáutico'],
-    component: (
-      <BlockDrift
-        near="#FFFFFF"
-        far="#C8A44D"
-        edge="#000000"
-        grid={15}
-        blockSize={10}
-        gap={20}
-        layers={12}
-        speed={10}
-      />
-    )
   }
 ];
 
 export const Hero: React.FC = () => {
   const { setQuoteOpen, setBookingOpen } = useApp();
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [imageLoaded, setImageLoaded] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -97,9 +64,22 @@ export const Hero: React.FC = () => {
   return (
     <section className="relative w-full overflow-hidden flex items-center justify-center" style={{ minHeight: '92vh', background: '#0A0A0A' }}>
       
-      {/* ── 3D WebGL Background Component Carousel ── */}
-      <div className="absolute inset-0 z-0 pointer-events-auto opacity-75 transition-opacity duration-700">
-        {active.component}
+      {/* ── Background Image Carousel ── */}
+      <div className="absolute inset-0 z-0">
+        {HERO_SLIDES.map((slide, idx) => (
+          <img
+            key={slide.id}
+            src={slide.image}
+            alt=""
+            className="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000"
+            style={{
+              opacity: idx === currentSlide ? 0.45 : 0,
+              transform: idx === currentSlide ? 'scale(1.02)' : 'scale(1)',
+            }}
+            onLoad={() => setImageLoaded(prev => ({ ...prev, [slide.id]: true }))}
+            onError={(e) => { (e.target as HTMLImageElement).src = './img/hero.jpg'; }}
+          />
+        ))}
       </div>
 
       {/* ── Gradient Masks ── */}
@@ -170,13 +150,6 @@ export const Hero: React.FC = () => {
           ))}
         </div>
 
-        {/* Slide Indicator Label */}
-        <div className="pt-2">
-          <span className="text-[0.65rem] font-bold text-[#C8A44D] tracking-widest uppercase px-3 py-1 rounded-full bg-black/60 border border-white/10 backdrop-blur-md">
-            EFECTO 3D ({currentSlide + 1}/3): {active.effectName}
-          </span>
-        </div>
-
       </div>
 
       {/* Left/Right Carousel Controls */}
@@ -211,7 +184,7 @@ export const Hero: React.FC = () => {
 
       {/* Scroll indicator */}
       <button
-        onClick={() => scrollToSection('paquetes')}
+        onClick={() => scrollToSection('nosotros')}
         className="absolute bottom-4 left-1/2 -translate-x-1/2 z-10 text-[#666672] hover:text-[#C8A44D] transition-colors p-2 cursor-pointer flex flex-col items-center gap-1"
         aria-label="Desplazarse hacia abajo"
       >

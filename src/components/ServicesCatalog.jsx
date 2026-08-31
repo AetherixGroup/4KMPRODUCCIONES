@@ -336,7 +336,7 @@ export const ServicesCatalog = () => {
               <button onClick={closeVideo} className="absolute -top-11 right-0 grid place-items-center w-9 h-9 text-white" style={{ border: '1px solid #555', borderRadius: '6px', background: '#141418' }} aria-label="Cerrar video"><X className="w-5 h-5" /></button>
               <div className={selectedVideo.type === 'tiktok' ? 'mx-auto w-full max-w-[390px] aspect-[9/16] overflow-hidden bg-black' : 'w-full aspect-video overflow-hidden bg-black'} style={{ borderRadius: '8px', border: '1px solid #333' }}>
                 {selectedVideo.type === 'local' ? (
-                  <video src={selectedVideo.src} controls autoPlay playsInline preload="metadata" className="w-full h-full object-contain" />
+                  <video src={selectedVideo.src} controls playsInline preload="none" className="w-full h-full object-contain" />
                 ) : (
                   <iframe src={`https://www.tiktok.com/player/v1/${selectedVideo.id}?controls=1&description=0`} title={selectedVideo.title} className="w-full h-full" allow="autoplay; encrypted-media; fullscreen; picture-in-picture" allowFullScreen />
                 )}

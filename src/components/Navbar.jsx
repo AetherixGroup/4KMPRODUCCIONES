@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useApp } from '../context/AppContext';
-import { ShoppingBag, Calendar, Gamepad2, Menu, X, Calculator, Award, ChevronDown, RotateCcw } from 'lucide-react';
+import { ShoppingBag, Calendar, Menu, X, Calculator, ChevronDown, RotateCcw } from 'lucide-react';
 
 const NAV_LINKS = [
   { label: 'Inicio',     action: () => { window.location.href = './'; } },
@@ -15,7 +15,7 @@ const PORTFOLIO_PAGES = [
 ];
 
 export const Navbar = () => {
-  const { cart, setCartOpen, setBookingOpen, setQuoteOpen, setGameOpen, rewardsPoints } = useApp();
+  const { cart, setCartOpen, setBookingOpen, setQuoteOpen } = useApp();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [collectionsOpen, setCollectionsOpen] = useState(false);
@@ -137,16 +137,6 @@ export const Navbar = () => {
               >
                 <RotateCcw className="w-3 h-3 text-[#C8A44D]" />
                 <span>Reiniciar</span>
-              </button>
-
-              {/* Rewards Pill */}
-              <button
-                onClick={() => setGameOpen(true)}
-                className="hidden xl:flex items-center gap-2 rounded-full px-3.5 py-1.5 bg-[rgba(200,164,77,0.1)] border border-[rgba(200,164,77,0.25)] hover:border-[rgba(200,164,77,0.5)] transition-all cursor-pointer"
-                title="4KM Rewards — Canjea puntos"
-              >
-                <Award className="w-3.5 h-3.5 text-[#C8A44D]" />
-                <span className="text-[0.7rem] font-bold text-[#C8A44D]">{rewardsPoints} pts</span>
               </button>
 
               {/* Cart */}

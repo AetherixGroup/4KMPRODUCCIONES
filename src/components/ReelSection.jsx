@@ -1,7 +1,10 @@
 import React from 'react';
-import { Sparkles, Play } from 'lucide-react';
+import { Sparkles } from 'lucide-react';
+import { useVideoLazyLoad } from '../hooks/useVideoLazyLoad';
 
 export const ReelSection = () => {
+  const { videoRef, isVisible } = useVideoLazyLoad();
+
   return (
     <section id="reel" className="section-pad relative overflow-hidden" style={{ background: '#0A0A0A' }}>
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-[rgba(200,164,77,0.04)] blur-[120px] rounded-full pointer-events-none" />
@@ -19,9 +22,9 @@ export const ReelSection = () => {
         </div>
 
         <div className="overflow-hidden rounded-3xl border border-[rgba(200,164,77,0.25)] bg-black shadow-2xl">
-          {/* Ligero: poster + preload metadata, sin autoplay ni descarga pesada al inicio */}
           <video
-            src="./reel/4km-reel-profesional.mp4"
+            ref={videoRef}
+            src={isVisible ? "./reel/4km-reel-profesional.mp4" : undefined}
             controls
             playsInline
             preload="none"
