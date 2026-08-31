@@ -3,12 +3,16 @@ import { AppProvider } from './context/AppContext';
 import { SplashScreen } from './components/SplashScreen';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { About4KM } from './components/About4KM';
+import { CampaignCarousel } from './components/CampaignCarousel';
+import { ReelSection } from './components/ReelSection';
+import { ServicesCatalog } from './components/ServicesCatalog';
+import { CategoryShowcase } from './components/CategoryShowcase';
+import { ProductSection } from './components/ProductSection';
 import { AudioVisualPackages } from './components/AudioVisualPackages';
 import { PortfolioModule } from './components/PortfolioModule';
-import { About4KM } from './components/About4KM';
 import { PortfolioCategoryPage } from './components/PortfolioCategoryPage';
 import { ProjectDetailModal } from './components/ProjectDetailModal';
-import { ServicesCatalog } from './components/ServicesCatalog';
 import { DroneShowcase } from './components/DroneShowcase';
 import { SmartCartDrawer } from './components/SmartCartDrawer';
 import { BookingModal } from './components/BookingModal';
@@ -32,10 +36,14 @@ function AppContent() {
       ) : (
         <main>
           <Hero />
-          <AudioVisualPackages />
-          <ServicesCatalog />
-          <PortfolioModule />
           <About4KM />
+          <CampaignCarousel />
+          <ReelSection />
+          <ServicesCatalog />
+          <CategoryShowcase />
+          <ProductSection />
+          <AudioVisualPackages />
+          <PortfolioModule />
           <DroneShowcase />
         </main>
       )}

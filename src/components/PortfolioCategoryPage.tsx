@@ -35,7 +35,7 @@ const CATEGORY_MEDIA: Record<string, Array<{ kind: 'image' | 'video'; src: strin
     { kind: 'image', src: 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=900&auto=format&fit=crop&q=80', alt: 'Toma Aérea Panorámica 4K' },
     { kind: 'image', src: 'https://images.unsplash.com/photo-1527977966376-1c8408f9f108?w=900&auto=format&fit=crop&q=80', alt: 'Piloto Profesional MTC' },
     { kind: 'image', src: 'https://images.unsplash.com/photo-1473968512647-3e447244af8f?w=900&auto=format&fit=crop&q=80', alt: 'Inspección & Cobertura Urbana' },
-    { kind: 'video', src: './img/YDRAY-PUBLICIDAD-DRONE-OFICIAL_Web.mp4', cover: 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=900&auto=format&fit=crop&q=80', title: 'Showreel Drone 4K Cinema' },
+    { kind: 'video', src: './img/YDRAY-PUBLICIDAD-DRONE-OFICIAL_web.mp4', cover: 'https://images.unsplash.com/photo-1508614589041-895b88991e3e?w=900&auto=format&fit=crop&q=80', title: 'Showreel Drone 4K Cinema' },
   ],
   quinceanos: [
     { kind: 'image', src: 'https://images.unsplash.com/photo-1513151233558-d860c5398176?w=900&auto=format&fit=crop&q=80', alt: 'Fiesta Temática de 15 Años' },
@@ -53,7 +53,7 @@ const CATEGORY_MEDIA: Record<string, Array<{ kind: 'image' | 'video'; src: strin
     { kind: 'image', src: 'https://images.unsplash.com/photo-1577495508048-b635879837f1?w=900&auto=format&fit=crop&q=80', alt: 'Filmación Industrial en Planta' },
     { kind: 'image', src: 'https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=900&auto=format&fit=crop&q=80', alt: 'Proyecto de Ingeniería 4K' },
     { kind: 'image', src: 'https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=900&auto=format&fit=crop&q=80', alt: 'Sede Institucional y Corporativa' },
-    { kind: 'video', src: './img/YDRAY-PROYECTO-ORTIZ_Web.mp4', cover: 'https://images.unsplash.com/photo-1577495508048-b635879837f1?w=900&auto=format&fit=crop&q=80', title: 'Documental Institucional' },
+    { kind: 'video', src: './img/YDRAY-PROYECTO-ORTIZ_web.mp4', cover: 'https://images.unsplash.com/photo-1577495508048-b635879837f1?w=900&auto=format&fit=crop&q=80', title: 'Documental Institucional' },
   ],
 };
 

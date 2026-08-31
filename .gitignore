@@ -11,4 +11,22 @@ venv/
 *.sqlite
 *.sqlite3
 
+.sqlite3
+
 .vscode/
+
+# Build output
+dist/
+dist-ssr/
+*.local
+vite.config.js.timestamp-*
+
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-error.log*
+
+# OS
+.DS_Store
+Thumbs.db
+*.log

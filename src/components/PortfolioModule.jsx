@@ -50,35 +50,6 @@ export const PortfolioModule = () => {
           </p>
         </div>
 
-        {/* Reel destacado para la marca */}
-        <div className="glass-panel p-4 md:p-8 border-yellow-500/30 space-y-6">
-          {/* Header con info */}
-          <div className="max-w-2xl">
-            <div className="badge-gold label" style={{ display: 'inline-flex' }}>
-              <Sparkles className="w-3 h-3" style={{ color: '#C8A44D' }} />
-              REEL PROFESIONAL 4KM
-            </div>
-            <h3 className="font-cinzel text-2xl md:text-4xl font-bold text-white mt-3">
-              Producción Audiovisual <span style={{ color: '#C8A44D' }}>Premium</span>
-            </h3>
-            <p className="text-sm text-slate-300 leading-relaxed mt-4 max-w-xl">
-              El reel destacado queda integrado en el portafolio como pieza de presentación de la marca. Visualiza la calidad y estilo de nuestras producciones.
-            </p>
-          </div>
-
-          {/* Video full width */}
-          <div className="overflow-hidden rounded-2xl border border-yellow-500/20 bg-black w-full">
-            <video
-              src="./reel/4km-reel-profesional.mp4"
-              controls
-              playsInline
-              preload="metadata"
-              poster="./img/hero.jpg"
-              className="w-full h-auto aspect-video object-contain bg-black"
-            />
-          </div>
-        </div>
-
         {/* Search Bar & Year Folder Selector */}
         <div className="glass-panel p-4 md:p-6 space-y-4 border-yellow-500/30">
           <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
